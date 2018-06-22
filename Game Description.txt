@@ -2,43 +2,69 @@ Instructions on How to run the game:
 
 Make sure that the python version used is 2.7. Tuple Unpacking is being used in my source code which is not supported in Python 3.
 Also make sure that pygame is installed for the GUI.
-An image file and a font file is submitted in the zip folder. Make sure that the image and font files are in the same folder as the python source code.
+An image file and a font file is submitted in the zip folder. Make sure that the image and font files are in the same folder as the
+ python source code.
 Run the python code in any IDE
 
 
 High Level Description:
 
-Initially the turn is assumed by the AI. Ai has the redpieces and the human has the blue pieces. The AI analyzes it’s first move on the basis of the alpha beta algorithm. It calls the alpha beta algorithm with it’s current state. In the alpha beta algorithm every action is taken from an actions function defined for that state. The actions for that state is obtained by traversing through the board. For every piece, it is checked what legal moves can be taken by that particular piece in that current state. The legal move is taken as a tuple . Finally we get an array of tuples of the legal moves possible by the player in that current state. MAX-VALUE function is called for that state which takes in the current state,alpha,beta,cutoff and time as a parameter. The time variable is taken as a parameter to make sure that the computer does not take more than 15 seconds to make a move. The  cutoff value is taken so that the computer can decide how many moves ahead it needs to think based on the difficulty level decided by the human player. Alpha and beta are the parameters required to perform the smart move thinking . In the same manner MIN-VALUE function is defined with similar parameter. Both the MIN-VALUE and MAX-Value functions return values that can be used for deciding the best move by the AI.
-After the AI makes a move, the turn variable changes its value to blue, to let the game know that it is the human’s turn to play. The human makes the move and the turn changes back to red to give the AI it’s chance to make the move.
-There are many different types of functions used within the game , the meaning of which have been provided in the inline comments. These functions are used for performing the necessary functionality such as the movement of pieces, removal of pieces etc.
+Initially the turn is assumed by the AI. Ai has the redpieces and the human has the blue pieces. The AI analyzes itâ€™s first move on the
+ basis of the alpha beta algorithm. It calls the alpha beta algorithm with itâ€™s current state. In the alpha beta algorithm every action
+ is taken from an actions function defined for that state. The actions for that state is obtained by traversing through the board. For
+ every piece, it is checked what legal moves can be taken by that particular piece in that current state. The legal move is taken as a
+ tuple . Finally we get an array of tuples of the legal moves possible by the player in that current state. MAX-VALUE function is called
+ for that state which takes in the current state,alpha,beta,cutoff and time as a parameter. The time variable is taken as a parameter to
+ make sure that the computer does not take more than 15 seconds to make a move. The  cutoff value is taken so that the computer can
+ decide how many moves ahead it needs to think based on the difficulty level decided by the human player. Alpha and beta are the
+ parameters required to perform the smart move thinking . In the same manner MIN-VALUE function is defined with similar parameter. Both
+ the MIN-VALUE and MAX-Value functions return values that can be used for deciding the best move by the AI.
 
-There are three classes which are constructed within the code. One is for maintaining the checkerboard functions and variable. One is for maintaining the Graphical User Interface and last one is for the main Game.
+After the AI makes a move, the turn variable changes its value to blue, to let the game know that it is the humanâ€™s turn to play. The
+ human makes the move and the turn changes back to red to give the AI itâ€™s chance to make the move.
+
+There are many different types of functions used within the game , the meaning of which have been provided in the inline comments. These
+ functions are used for performing the necessary functionality such as the movement of pieces, removal of pieces etc.
+
+There are three classes which are constructed within the code. One is for maintaining the checkerboard functions and variable. One is
+ for maintaining the Graphical User Interface and last one is for the main Game.
 
 
 Heuristics for the evaluation function:
 
 Many heuristics have been used for determing the value in the evaluation function. These are:
-•The current position of the checkerPiece. For the computer, the nearer the piece is to it’s own starting line, the lower the weight and same goes for human.
-•Check if the checkerpiece is present on the left or right wall of the board. If present on the left or right walls, assign a higher positive weight for the score. Eg. If the computer has 2 pieces on the wall, assign +20 to computer’s score and if it is the same case for human , assign -20(which is good for human score)
-•Check the distance of the checkerpiece from the final line and assign weight accordingly.Higher the distance, more moves possible and hence higher weight.
-•Check if the checkerpiece is currently in a safe position or not.If in a safe position, assign a higher weight else deduct weight.
-•Check if the checkerpiece is in a position to make a capture or not. If in a capture position, assign a higher weight else no change.
+â€¢The current position of the checkerPiece. For the computer, the nearer the piece is to itâ€™s own starting line, the lower the weight and
+ same goes for human.
+â€¢Check if the checkerpiece is present on the left or right wall of the board. If present on the left or right walls, assign a higher
+ positive weight for the score. Eg. If the computer has 2 pieces on the wall, assign +20 to computerâ€™s score and if it is the same case
+ for human , assign -20(which is good for human score)
+â€¢Check the distance of the checkerpiece from the final line and assign weight accordingly.Higher the distance, more moves possible and
+ hence higher weight.
+â€¢Check if the checkerpiece is currently in a safe position or not.If in a safe position, assign a higher weight else deduct weight.
+â€¢Check if the checkerpiece is in a position to make a capture or not. If in a capture position, assign a higher weight else no change.
 
 The human is asked which difficulty level he would like to play in. There are 3 difficulty levels :
 
-•Easy(level 1) : If the human chooses 1, then he is going for easy level. If it is an easy level, in that case the cutoff is set as 4 and the AI will look into 4 moves ahead only if the time permits(15 seconds).
-•Medium(level 2): If the human chooses 2, then he is going for easy level. If it is an easy level, in that case the cutoff is set as 12 and the AI will look into 12 moves ahead  if the time permits(15 seconds).
-•Hard(Level 3): If the human chooses 3, then he is going for easy level. If it is an easy level, in that case the cutoff is set as 20 and the AI will look into 20 moves ahead if the time permits(15 seconds).
+â€¢Easy(level 1) : If the human chooses 1, then he is going for easy level. If it is an easy level, in that case the cutoff is set as 4
+ and the AI will look into 4 moves ahead only if the time permits(15 seconds).
+â€¢Medium(level 2): If the human chooses 2, then he is going for easy level. If it is an easy level, in that case the cutoff is set as 12
+ and the AI will look into 12 moves ahead  if the time permits(15 seconds).
+â€¢Hard(Level 3): If the human chooses 3, then he is going for easy level. If it is an easy level, in that case the cutoff is set as 20
+ and the AI will look into 20 moves ahead if the time permits(15 seconds).
 
 
 Evaluation Function:
 
-The evaluation function is being called if the cutoff level is reached or the time taken is greater than 15 seconds or the search reaches the terminal state. The function calculates the computer score as positive and human score as negative using the heuristics provided earlier in the report. It returns a sum of the computer score and the human score. So based on the current state of the board, an evaluation score is returned The score can be positive or negative .
+The evaluation function is being called if the cutoff level is reached or the time taken is greater than 15 seconds or the search
+ reaches the terminal state. The function calculates the computer score as positive and human score as negative using the heuristics
+ provided earlier in the report. It returns a sum of the computer score and the human score. So based on the current state of the board,
+ an evaluation score is returned The score can be positive or negative .
 
 
 Terminal State:
 
-The terminal state is achieved when there are no more legal moves possible by both the human and the computer. When a terminal state is achieved , the code checks the number of pieces for both computer and human. 
+The terminal state is achieved when there are no more legal moves possible by both the human and the computer. When a terminal state is
+ achieved , the code checks the number of pieces for both computer and human. 
 If Human pieces>Computer pieces:
 	The GUI lets the human know that he has won.
 If computer pieces >human pieces:
